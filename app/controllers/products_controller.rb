@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   def show
-    render json: @product.to_json(include: :components)
+    render json: @product.to_json(include: {components: {include: :options}})
   end
 
   # POST /products
