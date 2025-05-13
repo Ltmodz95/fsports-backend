@@ -38,11 +38,6 @@ class PriceAdjustmentsController < ApplicationController
     @price_adjustment.destroy!
   end
 
-  def calculate_product_price
-    @price_calculator = PriceCalculator.new(params[:selected_options], params[:product_id])
-    render json: { price: @price_calculator.calculate_price }
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_price_adjustment

@@ -24,6 +24,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def calculate_product_price
+    @price_calculator = PriceCalculator.new(params[:selected_options], params[:product_id])
+    render json: { price: @price_calculator.calculate_price }
+  end
+
   # PATCH/PUT /products/1
   def update
     if @product.update(product_params)
