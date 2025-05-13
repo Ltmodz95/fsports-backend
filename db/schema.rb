@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_13_025203) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_13_133705) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -50,6 +50,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_13_025203) do
     t.index ["second_option_id"], name: "index_options_on_second_option_id"
   end
 
+  create_table "price_adjustments", force: :cascade do |t|
+    t.bigint "first_option_id"
+    t.bigint "second_option_id"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["first_option_id", "second_option_id"], name: "idx_on_first_option_id_second_option_id_e030455904", unique: true
+    t.index ["first_option_id"], name: "index_price_adjustments_on_first_option_id"
+    t.index ["second_option_id"], name: "index_price_adjustments_on_second_option_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.decimal "base_price"
@@ -65,5 +76,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_13_025203) do
   add_foreign_key "options", "components"
   add_foreign_key "options", "options", column: "first_option_id"
   add_foreign_key "options", "options", column: "second_option_id"
+  add_foreign_key "price_adjustments", "options", column: "first_option_id"
+  add_foreign_key "price_adjustments", "options", column: "second_option_id"
   add_foreign_key "products", "categories"
 end
