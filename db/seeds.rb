@@ -9,5 +9,7 @@
 #   end
 
 category = Category.find_or_create_by(name: "Bikes")
-Product.create(name: "super bike", category: category, base_price: 1000, description: "super bike", in_stock: true)
+product = Product.create(name: "super bike", category: category, base_price: 1000, description: "super bike", in_stock: true)
+Component.create(name: "Wheel", product: product)
+Component.create(name: "Frame", product: product)
 
