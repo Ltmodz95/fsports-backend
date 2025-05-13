@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :incompatablity_rules
   resources :options
   resources :components
   resources :products
