@@ -17,3 +17,5 @@ Option.create(name: "Blue", price: 200, in_stock: true, component: component1)
 Option.create(name: "Green", price: 300, in_stock: true, component: component2)
 Option.create(name: "Yellow", price: 400, in_stock: true, component: component2)
 
+price_adjustment = PriceAdjustment.create(first_option: Option.first, second_option: Option.last, price: 10)
+

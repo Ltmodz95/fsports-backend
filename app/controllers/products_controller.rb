@@ -26,7 +26,7 @@ class ProductsController < ApplicationController
 
   def calculate_product_price
     @price_calculator = PriceCalculator.new(params[:selected_options], params[:product_id])
-    render json: { price: @price_calculator.calculate_price }
+    render json: { total: @price_calculator.calculate_price[0], adjustments: @price_calculator.calculate_price[1] }
   end
 
   # PATCH/PUT /products/1
