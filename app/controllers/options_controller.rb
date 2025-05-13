@@ -33,6 +33,15 @@ class OptionsController < ApplicationController
     end
   end
 
+  def check_compatibility
+    @compatibility = OptionsCompatiblity.new(params[:selected_options])
+    if @compatibility.compatible?
+      render json: []
+    else
+      render json: @compatibility.incompatible_combinations
+    end
+  end
+
   # DELETE /options/1
   def destroy
     @option.destroy!
