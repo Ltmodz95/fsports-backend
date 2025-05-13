@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :order_items
   resources :price_adjustments
   resources :incompatablity_rules
   resources :options
