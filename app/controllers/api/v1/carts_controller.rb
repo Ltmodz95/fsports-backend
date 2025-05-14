@@ -5,8 +5,7 @@ module Api
       # GET /api/v1/carts/1
       def show
         cart_items = @cart.cart_items.includes(:product)
-        total_price =0
-        debugger
+        total_price =0   
         cart_items.each do |item| 
           total_price += item.selected_options.present?  ?  PriceCalculator.new(JSON.parse(item.selected_options).map(&:first), item.product.id).calculate_price[0] : item.product.base_price
         end 
