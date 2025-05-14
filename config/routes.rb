@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       end
       resources :passwords, param: :token
       resources :cart_items
-      resources :carts
+      resource :cart, only: [:show]
       resources :price_adjustments
       resources :incompatablity_rules
       resources :options

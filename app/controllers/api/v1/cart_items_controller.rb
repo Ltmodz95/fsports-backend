@@ -17,12 +17,9 @@ module Api
 
       # POST /api/v1/cart_items
       def create
-        @cart_item = CartItem.new(cart_item_params)
-        debugger
-        
-        @cart_item.cart = Current.user.cart
-        if @cart_item.save
-          render json: @cart_item, status: :created, location: api_v1_cart_item_url(@cart_item)
+        @cart_item = ::CreateCartItem.new(params[:product_id], params[:selected_options]).call
+        if @cart_item.save!
+          render json: @cart_item, status: :created
         else
           render json: @cart_item.errors, status: :unprocessable_entity
         end
@@ -50,7 +47,7 @@ module Api
 
         # Only allow a list of trusted parameters through.
         def cart_item_params
-          params.require(:cart_item).permit(:product_id, :selected_options)
+          params.permit(:product_id, :selected_options)
         end
     end
   end
