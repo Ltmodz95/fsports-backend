@@ -8,14 +8,19 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+user = User.create!(email_address: "test@test.com", password: "123456")
+admin = User.create!(email_address: "admin@test.com", password: "123456")
+
+
 category = Category.find_or_create_by(name: "Bikes")
 product = Product.create(name: "super bike", category: category, base_price: 1000, description: "super bike", in_stock: true)
 component1 = Component.create(name: "Wheel", product: product)
 component2 = Component.create(name: "Frame", product: product)
-Option.create(name: "Red", price: 100, in_stock: true, component: component1)
-Option.create(name: "Blue", price: 200, in_stock: true, component: component1)
-Option.create(name: "Green", price: 300, in_stock: true, component: component2)
-Option.create(name: "Yellow", price: 400, in_stock: true, component: component2)
+option1 = Option.create(name: "Red", price: 100, in_stock: true, component: component1)
+option2 = Option.create(name: "Blue", price: 200, in_stock: true, component: component1)
+option3 = Option.create(name: "Green", price: 300, in_stock: true, component: component2)
+option4 = Option.create(name: "Yellow", price: 400, in_stock: true, component: component2)
 
-price_adjustment = PriceAdjustment.create(first_option: Option.first, second_option: Option.last, price: 10)
-
+PriceAdjustment.create(first_option: option1, second_option: option3, price: 10)
+PriceAdjustment.create(first_option: option2, second_option: option4, price: -10)
+IncompatablityRule.create(first_option: option1, second_option: option4)

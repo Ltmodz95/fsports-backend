@@ -135,3 +135,33 @@ Authorization: Bearer your-token-here
    - Clear model relationships
    - Consistent coding patterns
    - Well-documented architecture
+<<<<<<< HEAD
+=======
+
+## 🌐 API Endpoints
+
+The API follows RESTful conventions and is versioned. All endpoints are prefixed with `/api/v1/`. Key endpoints include:
+
+- `/api/v1/products` - Product management
+- `/api/v1/categories` - Category management
+- `/api/v1/components` - Component management
+- `/api/v1/options` - Option management
+- `/api/v1/incompatibility_rules` - Compatibility rule management
+- `/api/v1/price_adjustments` - Price adjustment management
+- `/api/v1/cart` - Shopping cart management
+- `/api/v1/session` - Authentication management
+- `/api/v1/passwords` - Password management
+
+### API Versioning
+
+The API uses URL-based versioning (e.g., `/api/v1/`). The version is also included in the response headers as `X-API-Version`.
+
+### Example Request
+
+```bash
+curl -H "Authorization: Bearer your-token-here" \
+     -H "Accept: application/json" \
+     http://localhost:3000/api/v1/products
+```
+
+>>>>>>> ae99414 (-controllers versioning)

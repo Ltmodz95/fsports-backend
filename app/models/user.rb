@@ -3,4 +3,13 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
+
+  has_one :cart, dependent: :destroy
+  after_create :create_cart
+
+  private
+    def create_cart
+      
+      Cart.create!(user: self)
+    end
 end

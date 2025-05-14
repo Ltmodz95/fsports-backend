@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_13_232705) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_14_073000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -27,6 +27,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_13_232705) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -124,6 +126,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_13_232705) do
 
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "products"
+  add_foreign_key "carts", "users"
   add_foreign_key "components", "products"
   add_foreign_key "incompatablity_rules", "options", column: "first_option_id"
   add_foreign_key "incompatablity_rules", "options", column: "second_option_id"
