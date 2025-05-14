@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories
   def index
+    puts "request: #{request.headers}"
     @categories = Category.all
 
     render json: @categories

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resource :session
+  resources :passwords, param: :token
   resources :cart_items
   resources :carts
   resources :price_adjustments
