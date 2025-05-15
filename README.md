@@ -1,5 +1,54 @@
 # 🏪 FSPORT Backend
 
+## 📋 Overview
+FSPORT Backend is a Rails API that provides endpoints for managing products, components, options, price adjustments, and more.
+
+## 🚀 Setup
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd fsport-backend
+   ```
+
+2. Install dependencies:
+   ```bash
+   bundle install
+   ```
+
+3. Set up the database:
+   ```bash
+   rails db:create db:migrate
+   ```
+
+4. Start the server:
+   ```bash
+   rails server
+   ```
+
+## 🌐 API Endpoints
+- **Products**: `GET /api/v1/products`, `POST /api/v1/products`, etc.
+- **Components**: `GET /api/v1/components`, `POST /api/v1/components`, etc.
+- **Options**: `GET /api/v1/options`, `POST /api/v1/options`, etc.
+- **Price Adjustments**: `GET /api/v1/price_adjustments`, `POST /api/v1/price_adjustments`, etc.
+- **Categories**: `GET /api/v1/categories`, `POST /api/v1/categories`, etc.
+- **Carts**: `GET /api/v1/carts`, `POST /api/v1/carts`, etc.
+- **Cart Items**: `GET /api/v1/cart_items`, `POST /api/v1/cart_items`, etc.
+- **Incompatibility Rules**: `GET /api/v1/incompatablity_rules`, `POST /api/v1/incompatablity_rules`, etc.
+
+## 🧪 Testing
+Run the test suite:
+```bash
+bundle exec rspec
+```
+
+## 🔐 Authentication
+The API uses session-based authentication. In the test environment, authentication is skipped for convenience.
+
+## 📄 License
+This project is licensed under the MIT License.
+
+# 🏪 FSPORT Backend
+
 A robust e-commerce backend system built with Ruby on Rails, designed to handle complex product configurations with compatibility rules and price adjustments.
 
 ## 🚀 Installation
@@ -135,8 +184,6 @@ Authorization: Bearer your-token-here
    - Clear model relationships
    - Consistent coding patterns
    - Well-documented architecture
-<<<<<<< HEAD
-=======
 
 ## 🌐 API Endpoints
 
@@ -164,4 +211,3 @@ curl -H "Authorization: Bearer your-token-here" \
      http://localhost:3000/api/v1/products
 ```
 
->>>>>>> ae99414 (-controllers versioning)
