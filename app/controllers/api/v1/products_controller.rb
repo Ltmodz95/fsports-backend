@@ -9,7 +9,7 @@ module Api
         if params[:category_id].present?
           @products = @products.where(category_id: params[:category_id])
         end
-        render json: @products
+        render json: @products.to_json(include: {category: {only: :name}})
       end
 
       # GET /api/v1/products/1
@@ -19,6 +19,7 @@ module Api
 
       # POST /api/v1/products
       def create
+        debugger
         @product = Product.new(product_params)
 
         if @product.save
@@ -55,7 +56,8 @@ module Api
 
         # Only allow a list of trusted parameters through.
         def product_params
-          params.require(:product).permit(:name, :base_price, :in_stock, :description, :category_id)
+          params.require(:product).permit(:name, :base_price, :in_stock, :description, :category_id,
+           components_attributes: [ :name, options_attributes: [:name, :price]])
         end
     end
   end

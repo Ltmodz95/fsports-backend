@@ -14,7 +14,7 @@ module Api
 
       def verify
         if Session.where(token: params[:token]).exists?
-          render json: { data: { token: Current.session.token } }
+          render json: { data: { token: params[:token] } }
         else
           render json: { error: "Invalid token" }, status: :unauthorized
         end
