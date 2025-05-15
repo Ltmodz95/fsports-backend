@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :product do
-    name { "MyString" }
-    base_price { "9.99" }
-    in_stock { false }
-    description { "MyString" }
-    category { nil }
+    sequence(:name) { |n| "Product #{n}" }
+    base_price { 100 }
+    description { "A test product" }
+    in_stock { true }
+    association :category
   end
 end
