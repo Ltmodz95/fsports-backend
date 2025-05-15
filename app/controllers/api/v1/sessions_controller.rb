@@ -6,15 +6,17 @@ module Api
       def create
         if user = User.authenticate_by(params.permit(:email_address, :password))
           start_new_session_for user
-          render json: { data: { token: Current.session.token } }
+          render json: { data: { token: Current.session.token, user_role: user.role } }
         else
           render json: { error: "Invalid credentials" }, status: :unauthorized
         end
       end
 
       def verify
-        if Session.where(token: params[:token]).exists?
-          render json: { data: { token: params[:token] } }
+        session = Session.find_by(token: params[:token])
+        if session
+
+          render json: { data: { token: params[:token], user_role: session.user.role } }
         else
           render json: { error: "Invalid token" }, status: :unauthorized
         end
