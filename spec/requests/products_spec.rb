@@ -36,7 +36,7 @@ RSpec.describe "/products", type: :request do
   describe "GET /index" do
     it "renders a successful response" do
       Product.create! valid_attributes
-      get products_url, headers: valid_headers, as: :json
+      get api_v1_products_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
@@ -44,7 +44,7 @@ RSpec.describe "/products", type: :request do
   describe "GET /show" do
     it "renders a successful response" do
       product = Product.create! valid_attributes
-      get product_url(product), as: :json
+      get api_v1_product_url(product), as: :json
       expect(response).to be_successful
     end
   end
@@ -53,13 +53,13 @@ RSpec.describe "/products", type: :request do
     context "with valid parameters" do
       it "creates a new Product" do
         expect {
-          post products_url,
+          post api_v1_products_url,
                params: { product: valid_attributes }, headers: valid_headers, as: :json
         }.to change(Product, :count).by(1)
       end
 
       it "renders a JSON response with the new product" do
-        post products_url,
+        post api_v1_products_url,
              params: { product: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
@@ -69,13 +69,13 @@ RSpec.describe "/products", type: :request do
     context "with invalid parameters" do
       it "does not create a new Product" do
         expect {
-          post products_url,
+          post api_v1_products_url,
                params: { product: invalid_attributes }, as: :json
         }.to change(Product, :count).by(0)
       end
 
       it "renders a JSON response with errors for the new product" do
-        post products_url,
+        post api_v1_products_url,
              params: { product: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
@@ -91,7 +91,7 @@ RSpec.describe "/products", type: :request do
 
       it "updates the requested product" do
         product = Product.create! valid_attributes
-        patch product_url(product),
+        patch api_v1_product_url(product),
               params: { product: new_attributes }, headers: valid_headers, as: :json
         product.reload
         skip("Add assertions for updated state")
@@ -99,7 +99,7 @@ RSpec.describe "/products", type: :request do
 
       it "renders a JSON response with the product" do
         product = Product.create! valid_attributes
-        patch product_url(product),
+        patch api_v1_product_url(product),
               params: { product: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
@@ -109,7 +109,7 @@ RSpec.describe "/products", type: :request do
     context "with invalid parameters" do
       it "renders a JSON response with errors for the product" do
         product = Product.create! valid_attributes
-        patch product_url(product),
+        patch api_v1_product_url(product),
               params: { product: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
@@ -121,7 +121,7 @@ RSpec.describe "/products", type: :request do
     it "destroys the requested product" do
       product = Product.create! valid_attributes
       expect {
-        delete product_url(product), headers: valid_headers, as: :json
+        delete api_v1_product_url(product), headers: valid_headers, as: :json
       }.to change(Product, :count).by(-1)
     end
   end

@@ -1,30 +1,29 @@
 require "rails_helper"
 
-RSpec.describe IncompatablityRulesController, type: :routing do
+RSpec.describe Api::V1::IncompatablityRulesController, type: :routing do
   describe "routing" do
     it "routes to #index" do
-      expect(get: "/incompatablity_rules").to route_to("incompatablity_rules#index")
+      expect(get: "/api/v1/incompatablity_rules").to route_to("api/v1/incompatablity_rules#index")
     end
 
     it "routes to #show" do
-      expect(get: "/incompatablity_rules/1").to route_to("incompatablity_rules#show", id: "1")
+      expect(get: "/api/v1/incompatablity_rules/1").to route_to("api/v1/incompatablity_rules#show", id: "1")
     end
 
-
     it "routes to #create" do
-      expect(post: "/incompatablity_rules").to route_to("incompatablity_rules#create")
+      expect(post: "/api/v1/incompatablity_rules").to route_to("api/v1/incompatablity_rules#create")
     end
 
     it "routes to #update via PUT" do
-      expect(put: "/incompatablity_rules/1").to route_to("incompatablity_rules#update", id: "1")
+      expect(put: "/api/v1/incompatablity_rules/1").to route_to("api/v1/incompatablity_rules#update", id: "1")
     end
 
     it "routes to #update via PATCH" do
-      expect(patch: "/incompatablity_rules/1").to route_to("incompatablity_rules#update", id: "1")
+      expect(patch: "/api/v1/incompatablity_rules/1").to route_to("api/v1/incompatablity_rules#update", id: "1")
     end
 
     it "routes to #destroy" do
-      expect(delete: "/incompatablity_rules/1").to route_to("incompatablity_rules#destroy", id: "1")
+      expect(delete: "/api/v1/incompatablity_rules/1").to route_to("api/v1/incompatablity_rules#destroy", id: "1")
     end
   end
 end

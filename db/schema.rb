@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_15_033738) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_15_045450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -92,8 +92,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_15_033738) do
     t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "product_id", null: false
     t.index ["first_option_id", "second_option_id"], name: "idx_on_first_option_id_second_option_id_e030455904", unique: true
     t.index ["first_option_id"], name: "index_price_adjustments_on_first_option_id"
+    t.index ["product_id"], name: "index_price_adjustments_on_product_id"
     t.index ["second_option_id"], name: "index_price_adjustments_on_second_option_id"
   end
 
@@ -142,6 +144,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_15_033738) do
   add_foreign_key "orderitem_options", "order_items"
   add_foreign_key "price_adjustments", "options", column: "first_option_id"
   add_foreign_key "price_adjustments", "options", column: "second_option_id"
+  add_foreign_key "price_adjustments", "products"
   add_foreign_key "products", "categories"
   add_foreign_key "sessions", "users"
 end

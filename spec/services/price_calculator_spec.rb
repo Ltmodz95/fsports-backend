@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe PriceCalculator do
-  let(:product) { create(:product, base_price: 100) }
+  let(:product) { create(:product) }
   let(:component1) { create(:component, product: product) }
   let(:component2) { create(:component, product: product) }
   let(:option1) { create(:option, component: component1, price: 50) }
   let(:option2) { create(:option, component: component2, price: 30) }
-  let(:price_adjustment) { create(:price_adjustment, first_option: option1, second_option: option2, price: 10) }
+  let(:price_adjustment) { create(:price_adjustment, first_option: option1, second_option: option2, price: 10, product_id: product.id) }
 
   describe '#calculate_price' do
     context 'when no options are selected' do

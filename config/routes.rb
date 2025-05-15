@@ -6,14 +6,13 @@ Rails.application.routes.draw do
       end
       resources :passwords, param: :token
       resources :cart_items
-      resource :cart, only: [:show]
-      resources :price_adjustments
-      resources :options
-      resources :components
-      resources :products do 
-      resources :incompatablity_rules
-      end
+      resources :carts
       resources :categories
+      resources :components
+      resources :incompatablity_rules
+      resources :options
+      resources :price_adjustments
+      resources :products
 
       post "options/check_compatibility", to: "options#check_compatibility"
       post "products/calculate_product_price", to: "products#calculate_product_price"
