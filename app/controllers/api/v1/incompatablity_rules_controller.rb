@@ -5,9 +5,9 @@ module Api
 
       # GET /api/v1/incompatablity_rules
       def index
-        @incompatablity_rules = IncompatablityRule.all
+        @incompatablity_rules = IncompatablityRule.where(product_id: params[:product_id]).includes(first_option: :component, second_option: :component)
 
-        render json: @incompatablity_rules
+      render json: @incompatablity_rules.to_json(include: {first_option: {only: :name, include: :component}, second_option: {only: :name, include: :component}})
       end
 
       # GET /api/v1/incompatablity_rules/1
@@ -18,9 +18,9 @@ module Api
       # POST /api/v1/incompatablity_rules
       def create
         @incompatablity_rule = IncompatablityRule.new(incompatablity_rule_params)
-
+        @incompatablity_rule.product_id = params[:product_id]
         if @incompatablity_rule.save
-          render json: @incompatablity_rule, status: :created, location: api_v1_incompatablity_rule_url(@incompatablity_rule)
+          render json: @incompatablity_rule, status: :created
         else
           render json: @incompatablity_rule.errors, status: :unprocessable_entity
         end

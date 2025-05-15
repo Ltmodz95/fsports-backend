@@ -19,7 +19,6 @@ module Api
 
       # POST /api/v1/products
       def create
-        debugger
         @product = Product.new(product_params)
 
         if @product.save

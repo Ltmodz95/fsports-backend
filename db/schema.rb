@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_14_102310) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_15_033738) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -50,7 +50,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_14_102310) do
     t.integer "second_option_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "product_id", null: false
     t.index ["first_option_id", "second_option_id"], name: "index_incompatability_rules_on_options", unique: true
+    t.index ["product_id"], name: "index_incompatablity_rules_on_product_id"
   end
 
   create_table "options", force: :cascade do |t|
@@ -131,6 +133,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_14_102310) do
   add_foreign_key "components", "products"
   add_foreign_key "incompatablity_rules", "options", column: "first_option_id"
   add_foreign_key "incompatablity_rules", "options", column: "second_option_id"
+  add_foreign_key "incompatablity_rules", "products"
   add_foreign_key "options", "components"
   add_foreign_key "options", "options", column: "first_option_id"
   add_foreign_key "options", "options", column: "second_option_id"

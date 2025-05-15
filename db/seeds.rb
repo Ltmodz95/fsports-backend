@@ -7,9 +7,8 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
-user = User.create!(email_address: "user@test.com", password: "123456", role: :user)
-admin = User.create!(email_address: "admin@test.com", password: "123456", role: :admin)
+user = User.create!(email_address: "user@test.com", password: "123456", role: "user")
+admin = User.create!(email_address: "admin@test.com", password: "123456", role: "admin")
 
 
 category = Category.find_or_create_by(name: "Bikes")
@@ -23,4 +22,4 @@ option4 = Option.create(name: "Yellow", price: 400, in_stock: true, component: c
 
 PriceAdjustment.create(first_option: option1, second_option: option3, price: 10)
 PriceAdjustment.create(first_option: option2, second_option: option4, price: -10)
-IncompatablityRule.create(first_option: option1, second_option: option4)
+IncompatablityRule.create(first_option: option1, second_option: option4, product: product)

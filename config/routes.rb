@@ -8,10 +8,11 @@ Rails.application.routes.draw do
       resources :cart_items
       resource :cart, only: [:show]
       resources :price_adjustments
-      resources :incompatablity_rules
       resources :options
       resources :components
-      resources :products
+      resources :products do 
+      resources :incompatablity_rules
+      end
       resources :categories
 
       post "options/check_compatibility", to: "options#check_compatibility"
