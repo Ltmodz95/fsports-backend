@@ -20,6 +20,6 @@ option2 = Option.create(name: "Blue", price: 200, in_stock: true, component: com
 option3 = Option.create(name: "Green", price: 300, in_stock: true, component: component2)
 option4 = Option.create(name: "Yellow", price: 400, in_stock: true, component: component2)
 
-PriceAdjustment.create(first_option: option1, second_option: option3, price: 10)
-PriceAdjustment.create(first_option: option2, second_option: option4, price: -10)
+PriceAdjustment.create(first_option: option1, second_option: option3, price: 10, product: product)
+PriceAdjustment.create(first_option: option2, second_option: option4, price: -10, product: product)
 IncompatablityRule.create(first_option: option1, second_option: option4, product: product)

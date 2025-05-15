@@ -9,10 +9,11 @@ Rails.application.routes.draw do
       resources :carts
       resources :categories
       resources :components
-      resources :incompatablity_rules
       resources :options
-      resources :price_adjustments
-      resources :products
+      resources :products do 
+        resources :price_adjustments
+        resources :incompatablity_rules
+      end
 
       post "options/check_compatibility", to: "options#check_compatibility"
       post "products/calculate_product_price", to: "products#calculate_product_price"

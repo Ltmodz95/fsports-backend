@@ -5,9 +5,9 @@ module Api
 
       # GET /api/v1/price_adjustments
       def index
-        @price_adjustments = PriceAdjustment.all
+        @price_adjustments = PriceAdjustment.where(product_id: params[:product_id]).includes(first_option: :component, second_option: :component)
 
-        render json: @price_adjustments
+        render json: @price_adjustments.to_json(include: {first_option: {only: :name, include: :component}, second_option: {only: :name, include: :component}})
       end
 
       # GET /api/v1/price_adjustments/1
@@ -18,9 +18,9 @@ module Api
       # POST /api/v1/price_adjustments
       def create
         @price_adjustment = PriceAdjustment.new(price_adjustment_params)
-
+        @price_adjustment.product_id = params[:product_id]
         if @price_adjustment.save
-          render json: @price_adjustment, status: :created, location: api_v1_price_adjustment_url(@price_adjustment)
+          render json: @price_adjustment, status: :created
         else
           render json: @price_adjustment.errors, status: :unprocessable_entity
         end
